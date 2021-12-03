@@ -1,0 +1,8 @@
+import abc
+from typing import Any, Callable
+
+from pydantic.main import BaseModel
+
+
+class Task(BaseModel):
+    fn: Callable[..., Any]
