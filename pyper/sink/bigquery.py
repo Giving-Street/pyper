@@ -4,7 +4,7 @@ import typing as t
 from google.cloud import bigquery
 from pydantic import Field
 
-from pyper import Sink, SinkConfig
+from pyper.sink import Sink, SinkConfig
 
 
 class BigquerySinkConfig(SinkConfig):

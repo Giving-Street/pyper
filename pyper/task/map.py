@@ -1,5 +1,5 @@
 
-from pyper import Task
+from pyper.task import Task
 
 
 class MapTask(Task):

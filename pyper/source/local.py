@@ -2,7 +2,7 @@ from typing import List, Any
 
 from pydantic.fields import Field
 
-from pyper import DataSource
+from pyper.source import DataSource
 
 
 class LocalSource(DataSource):

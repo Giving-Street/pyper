@@ -2,7 +2,7 @@ from typing import List, Any
 
 from google.cloud import bigquery
 
-from pyper import DataSource
+from pyper.source import DataSource
 
 
 class BigQuerySource(DataSource):
