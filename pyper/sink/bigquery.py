@@ -2,12 +2,14 @@ import json
 import typing as t
 
 from google.cloud import bigquery
+from pydantic import Field
 
 from pyper import Sink, SinkConfig
 
 
 class BigquerySinkConfig(SinkConfig):
-    pass
+    target_table: t.Union[str, bigquery.TableReference]
+    is_streaming: bool = Field(default=True)
 
 
 class TargetTableNotFound(Exception):

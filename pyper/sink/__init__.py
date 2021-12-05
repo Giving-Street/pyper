@@ -24,8 +24,5 @@ class Sink(BaseModel):
 
 
 class SinkConfig(BaseModel):
-    target_table: t.Union[str, bigquery.TableReference]
-    is_streaming: bool = Field(default=True)
-
     class Config:
         arbitrary_types_allowed = True
