@@ -1,9 +1,6 @@
-import typing as t
 from enum import Enum
 
-from google.cloud import bigquery
 from pydantic import Field, BaseModel
-from pydantic.main import BaseModel
 
 
 class SinkStatus(str, Enum):

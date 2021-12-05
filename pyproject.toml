@@ -12,6 +12,7 @@ google-cloud-bigquery = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 Tinyquery = "^1.2.1"
+pycln = "^1.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

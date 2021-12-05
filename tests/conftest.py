@@ -7,7 +7,7 @@ from pydantic import Field
 from tinyquery import tinyquery
 
 from pyper import SinkStatus
-from pyper.sink.bigquery import BigQuerySink, BigquerySinkConfig, TargetTableNotFound
+from pyper.sink.bigquery import BigQuerySink, BigquerySinkConfig
 from pyper.source.bigquery import BigQuerySource
 
 
