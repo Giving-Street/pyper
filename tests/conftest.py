@@ -42,6 +42,8 @@ def bigquery_test_client(bigquery_test_data_schema):
 
 
 class FakeBigQuerySource(BigQuerySource):
+    client: tinyquery.TinyQuery
+
     def to_iterable(self) -> t.List[t.Any]:
         return self.__execute()
 

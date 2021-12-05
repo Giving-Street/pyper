@@ -25,7 +25,7 @@ def test_pipe_bigquery_source(bigquery_test_client):
     expected = [4, 8, 12, 16]
 
     stage = Pipe() \
-        .set_source(FakeBigQuerySource(client=bigquery_test_client, query="select value from test_data limit 4")) \
+        .set_source(FakeBigQuerySource(client=bigquery_test_client, query="select value from test.test_data limit 4")) \
         .add_task(MapTask(fn=fn)) \
         .add_task(MapTask(fn=fn)) \
         .run()
