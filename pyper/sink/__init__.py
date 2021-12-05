@@ -1,6 +1,8 @@
+import typing as t
 from enum import Enum
 
-from pydantic import Field
+from google.cloud import bigquery
+from pydantic import Field, BaseModel
 from pydantic.main import BaseModel
 
 
@@ -19,3 +21,11 @@ class Sink(BaseModel):
 
     def update_state(self, state: SinkStatus):
         self.state = state
+
+
+class SinkConfig(BaseModel):
+    target_table: t.Union[str, bigquery.TableReference]
+    is_streaming: bool = Field(default=True)
+
+    class Config:
+        arbitrary_types_allowed = True

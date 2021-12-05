@@ -2,17 +2,8 @@ import json
 import typing as t
 
 from google.cloud import bigquery
-from pydantic import BaseModel, Field
 
-from pyper import Sink
-
-
-class SinkConfig(BaseModel):
-    target_table: t.Union[str, bigquery.TableReference]
-    is_streaming: bool = Field(default=True)
-
-    class Config:
-        arbitrary_types_allowed = True
+from pyper import Sink, SinkConfig
 
 
 class BigquerySinkConfig(SinkConfig):
