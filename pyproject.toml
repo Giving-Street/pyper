@@ -5,11 +5,13 @@ description = ""
 authors = ["yansfil <tansfil@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.6.2,<3.11"
 pydantic = "^1.8.2"
 pytest = "^6.2.5"
+google-cloud-bigquery = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
+Tinyquery = "^1.2.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
