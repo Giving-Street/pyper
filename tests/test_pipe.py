@@ -7,6 +7,7 @@ def test_pipe_initialized():
     nums = [1, 2, 3, 4]
     fn = lambda x: x * 2
     pipe = Pipe()
+    expected = [4, 8, 12, 16]
 
     stage = (
         pipe.set_source(LocalSource(data=nums))
@@ -15,4 +16,4 @@ def test_pipe_initialized():
         .run()
     )
 
-    stage.result == [fn(num) for num in nums]
+    assert stage == expected

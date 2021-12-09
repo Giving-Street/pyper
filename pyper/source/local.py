@@ -6,7 +6,7 @@ from pyper import DataSource
 
 
 class LocalSource(DataSource):
-    data: List[Any] = Field(default_factory=[])
+    data: List[Any] = Field(default_factory=list)
 
     def to_iterable(self):
         # Temp
