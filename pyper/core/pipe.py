@@ -1,7 +1,7 @@
-from typing import Optional, List
+from typing import Optional, List, Dict
 
 from pyper.core import PipeAbstract
-from pyper.core.stage import Stage
+from pyper.core.stage import Stage, StageStatus
 from pyper.sink import Sink
 from pyper.source import DataSource
 from pyper.task import Task
@@ -12,6 +12,7 @@ class Pipe(PipeAbstract):
         self.source: Optional[DataSource] = None
         self.tasks: List[Task] = []
         self.sink: List[Sink] = []
+        self.stages: Dict[Stage] = []
 
     def set_source(self, source: DataSource) -> "Pipe":
         self.source = source
@@ -30,6 +31,14 @@ class Pipe(PipeAbstract):
         _list = self.source.to_iterable()
         stage = Stage(result=_list)
         for task in self.tasks:
-            stage = Stage(result=[task.fn(item) for item in stage.result])
+            try:
+                stage.status = StageStatus.STARTED
 
+                result = [task.fn(item) for item in stage.result]
+                stage = Stage(result=result, status=StageStatus.DONE, task=task)
+            except Exception as e:
+                task.fallback(e)
+                # TODO@grab: error handling type(rollback, maintain, ...)
+                stage = Stage(result=[], status=StageStatus.ERROR, task=task)
+                return stage
         return stage
