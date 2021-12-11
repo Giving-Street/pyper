@@ -18,3 +18,7 @@ class Stage(BaseModel):
     result: List[Any] = Field(default_factory=list)
     status: StageStatus = StageStatus.NOT_STARTED
     task: Task = None
+    lineage: List["Stage"] = []
+
+
+Stage.update_forward_refs()

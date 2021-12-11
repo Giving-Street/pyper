@@ -27,6 +27,7 @@ class Pipe(PipeAbstract):
         return self
 
     # TODO@grab: fallback 로직 추가
+    # TODO@grab: run method would be monster
     def run(self) -> Stage:
         _list = self.source.to_iterable()
         stage = Stage(result=_list)
@@ -35,7 +36,9 @@ class Pipe(PipeAbstract):
                 stage.status = StageStatus.STARTED
 
                 result = [task.fn(item) for item in stage.result]
-                stage = Stage(result=result, status=StageStatus.DONE, task=task)
+                stage = Stage(
+                    result=result, status=StageStatus.DONE, task=task, lineage=[stage]
+                )
             except Exception as e:
                 task.fallback(e)
                 # TODO@grab: error handling type(rollback, maintain, ...)
