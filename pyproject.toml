@@ -19,6 +19,7 @@ pycln = "^1.1.0"
 tox = "^3.14.3" # for six version mismatch
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
+tox-poetry-installer = "^0.8.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
