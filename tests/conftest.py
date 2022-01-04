@@ -60,6 +60,10 @@ class FakeBigQuerySink(BigQuerySink):
 
     def execute(self) -> None:
         entry = self._get_entry()
-        self.client.load_table_from_newline_delimited_json(table_name=self.config.target_table, table_lines=entry,
+        table_lines = [json.dumps(item) for item in entry]
+        self.client.load_table_from_newline_delimited_json(table_name=self.config.target_table, table_lines=table_lines,
                                                            schema=json.dumps(self.schema_["fields"]))
         self.update_state(state=SinkStatus.DONE)
+
+    def _get_entry(self) -> t.Sequence[dict]:
+        return [{"name": "test", "value": i} for i in range(10)] # TODO: get from shared state

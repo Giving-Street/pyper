@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from enum import Enum
 
 from pydantic import Field, BaseModel
@@ -13,8 +14,9 @@ class SinkStatus(str, Enum):
 class Sink(BaseModel):
     state: SinkStatus = Field(default=SinkStatus.NOT_STARTED)
 
+    @abstractmethod
     def execute(self) -> None:
-        ...
+        pass
 
     def update_state(self, state: SinkStatus):
         self.state = state
