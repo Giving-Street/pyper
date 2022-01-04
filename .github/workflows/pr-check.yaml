@@ -28,5 +28,7 @@ jobs:
           pip install poetry
           poetry install
       - name: Run tests
+        env:
+          TOXENV: "unit"
         run: |
           poetry run tox
