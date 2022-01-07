@@ -12,7 +12,7 @@ class Pipe(PipeAbstract):
         self.source: Optional[DataSource] = None
         self.tasks: List[Task] = []
         self.sink: List[Sink] = []
-        self.stages: Dict[Stage] = []
+        self.stages: Dict[Stage] = {}
 
     def set_source(self, source: DataSource) -> "Pipe":
         self.source = source
@@ -37,11 +37,19 @@ class Pipe(PipeAbstract):
 
                 result = [task.fn(item) for item in stage.result]
                 stage = Stage(
-                    result=result, status=StageStatus.DONE, task=task, lineage=[stage]
+                    result=result,
+                    status=StageStatus.DONE,
+                    last_task=task,
+                    upstream=[stage],
                 )
             except Exception as e:
                 task.fallback(e)
                 # TODO@grab: error handling type(rollback, maintain, ...)
-                stage = Stage(result=[], status=StageStatus.ERROR, task=task)
+                stage = Stage(
+                    result=[],
+                    status=StageStatus.ERROR,
+                    last_task=task,
+                    upstream=[stage],
+                )
                 return stage
         return stage

@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Any, Callable, Union
+from typing import List, Any, Callable, Union, Optional
 
 from pydantic.fields import Field
 from pydantic.main import BaseModel
@@ -16,9 +16,9 @@ class StageStatus(str, Enum):
 
 class Stage(BaseModel):
     result: List[Any] = Field(default_factory=list)
-    status: StageStatus = StageStatus.NOT_STARTED
-    task: Task = None
-    lineage: List["Stage"] = []
+    status: StageStatus = Field(default=StageStatus.NOT_STARTED)
+    last_task: Optional[Task] = Field(default=None)
+    upstream: List["Stage"] = Field(default_factory=list)
 
 
 Stage.update_forward_refs()

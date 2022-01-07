@@ -20,7 +20,7 @@ def test_pipe_initialized():
 
     assert stage.result == [fn(fn(num)) for num in nums]
     assert stage.status == StageStatus.DONE
-    assert stage.task == map_task2
+    assert stage.last_task == map_task2
 
 
 def test_pipe_exception_occurred(capsys):
@@ -42,7 +42,7 @@ def test_pipe_exception_occurred(capsys):
 
     assert stage.status == StageStatus.ERROR
     assert stage.result == []
-    assert stage.task == except_task
+    assert stage.last_task == except_task
 
     captured = capsys.readouterr()
     assert captured.out == "error\n"
