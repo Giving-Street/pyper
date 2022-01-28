@@ -1,15 +1,5 @@
-import abc
-from typing import List, Any
+from pyper.source.base import DataSource
+from pyper.source.bigquery import BigQuerySource
+from pyper.source.local import LocalSource
 
-from pydantic.main import BaseModel
 
-
-class DataSource(BaseModel):
-    @abc.abstractmethod
-    def to_iterable(self) -> List[Any]:
-        pass
-
-    class Config:
-        arbitrary_types_allowed = True
-        allow_mutation = True
-        underscore_attrs_are_private = True
