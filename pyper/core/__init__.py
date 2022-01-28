@@ -1,6 +1,5 @@
 import abc
 
-from pydantic.main import BaseModel
 
 from pyper.core.stage import Stage
 from pyper.sink import Sink

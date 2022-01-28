@@ -1,7 +1,5 @@
-from collections import Callable
-from typing import Any
 
-from pyper import Task
+from pyper.task import Task
 
 
 class MapTask(Task):

@@ -32,4 +32,7 @@ class Pipe(PipeAbstract):
         for task in self.tasks:
             stage = Stage(result=[task.fn(item) for item in stage.result])
 
+        for sink in self.sink:
+            sink.execute()  # TODO: execute in separate thread/process pool or async event loop
+
         return stage
