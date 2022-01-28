@@ -2,10 +2,13 @@
 name = "pyper"
 version = "0.1.0"
 description = ""
-authors = ["yansfil <tansfil@gmail.com>"]
+authors = ["yansfil <tansfil@gmail.com>", "ahnsv <ahnsv@bc.edu>"]
+packages = [
+    { include = "pyper" },
+]
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<3.11"
+python = ">=3.7,<3.10"
 pydantic = "^1.8.2"
 pytest = "^6.2.5"
 google-cloud-bigquery = "^2.31.0"
@@ -13,6 +16,10 @@ google-cloud-bigquery = "^2.31.0"
 [tool.poetry.dev-dependencies]
 Tinyquery = "^1.2.1"
 pycln = "^1.1.0"
+tox = "^3.14.3" # for six version mismatch
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+tox-poetry-installer = "^0.8.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
