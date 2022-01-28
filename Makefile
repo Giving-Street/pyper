@@ -2,7 +2,7 @@
 
 .PHONY: test
 test: ## run tests in tests directory in parallel
-	tox -p
+	tox
 
 .PHONY: help
 help: ## Show this help message.
