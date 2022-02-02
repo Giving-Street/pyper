@@ -1,10 +1,10 @@
 from typing import Optional, List
 
-from pyper.core import PipeAbstract
+from pyper.core.base import PipeAbstract
 from pyper.core.stage import Stage
 from pyper.sink import Sink
 from pyper.source import DataSource
-from pyper.task import Task
+from pyper.task.base import Task
 
 
 class Pipe(PipeAbstract):

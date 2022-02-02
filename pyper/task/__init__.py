@@ -1,7 +1,4 @@
-from typing import Any, Callable
+from pyper.task.base import Task
+from pyper.task.map import MapTask
 
-from pydantic.main import BaseModel
 
-
-class Task(BaseModel):
-    fn: Callable[..., Any]
